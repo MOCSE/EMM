@@ -2,9 +2,10 @@
 #include <math.h>
 
 void leerPunto(float *, float *);
-float distanciaDosPuntos(float, float, float, float);
-float calcularPerimetro(float, float, float);
-void mostrarResultado(float);
+float distanciaDosPuntos(const float *, const float *, 
+  const float *, const float *);
+float calcularPerimetro(const float *, const float *, const float *);
+void mostrarResultado(const float *);
 
 void main() {
   float Ax = 0;
@@ -21,13 +22,13 @@ void main() {
   printf("\nC: \n");
   leerPunto(&Cx, &Cy);
 
-  float distAB = distanciaDosPuntos(Ax, Ay, Bx, By);
-  float distCB = distanciaDosPuntos(Cx, Cy, Bx, By);
-  float distCA = distanciaDosPuntos(Cx, Cy, Ax, Ay);
+  float distAB = distanciaDosPuntos(&Ax, &Ay, &Bx, &By);
+  float distCB = distanciaDosPuntos(&Cx, &Cy, &Bx, &By);
+  float distCA = distanciaDosPuntos(&Cx, &Cy, &Ax, &Ay);
 
-  float perimetro = calcularPerimetro(distAB, distCB, distCA); 
+  float perimetro = calcularPerimetro(&distAB, &distCB, &distCA); 
 
-  mostrarResultado(perimetro);
+  mostrarResultado(&perimetro);
 }
 
 void leerPunto(float *x, float *y) {
@@ -37,14 +38,16 @@ void leerPunto(float *x, float *y) {
   scanf("%f", y);
 }
 
-float distanciaDosPuntos(float x1, float y1, float x2, float y2) {
-  return sqrtf(pow(x2 - x1, 2) + powf(y2 - y1, 2));
+float distanciaDosPuntos(const float *x1, const float *y1, 
+  const float *x2, const float *y2) {
+  return sqrtf(pow(*x2 - *x1, 2) + powf(*y2 - *y1, 2));
 }
 
-float calcularPerimetro(float distAB, float distCB, float distCA) {
-  return distAB + distCB + distCA;
+float calcularPerimetro(const float *distAB, const float *distCB, 
+  const float *distCA) {
+  return *distAB + *distCB + *distCA;
 }
 
-void mostrarResultado(float perimetro) {
-  printf("El perimetro es: %f\n", perimetro);
+void mostrarResultado(const float *perimetro) {
+  printf("El perimetro es: %f\n", *perimetro);
 }
