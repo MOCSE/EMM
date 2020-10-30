@@ -3,3 +3,6 @@
 
 #Ignore input files.
 *.in
+
+#Ignore zip files
+*.zip
