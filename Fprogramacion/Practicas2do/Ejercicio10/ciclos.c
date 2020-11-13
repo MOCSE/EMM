@@ -25,27 +25,27 @@ void leerOpcion(int* opc) {
 void ejecutarOpcionSel(const int* opc) {
   int sum = 0;
   switch (*opc) {
-  case 1: {
-    conFor(&sum);
-    break;
-  }
-  case 2: {
-    conWhile(&sum);
-    break;
-  }
-  case 3: {
-    conDoWhile(&sum);
-    break;
-  }
-  case 4: {
-    exit(0);
-    break;
-  }
-  default: {
-    printf("\nOPCION NO VALIDA\n");
-    exit(0);
-    break;
-  }
+    case 1: {
+      conFor(&sum);
+      break;
+    }
+    case 2: {
+      conWhile(&sum);
+      break;
+    }
+    case 3: {
+      conDoWhile(&sum);
+      break;
+    }
+    case 4: {
+      exit(0);
+      break;
+    }
+    default: {
+      printf("\nOPCION NO VALIDA\n");
+      exit(0);
+      break;
+    }
   }
   mostrarSumatoria(&sum);
 }
@@ -79,5 +79,5 @@ void conDoWhile(int* sum) {
 }
 
 void mostrarSumatoria(const int* sum) {
-  printf("La sumatoria es: %d \n", *sum);
+  printf("La sumatoria es: %d\n", *sum);
 }
