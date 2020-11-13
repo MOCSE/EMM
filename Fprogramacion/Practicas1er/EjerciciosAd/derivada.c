@@ -19,7 +19,7 @@ float leerNumero() {
 }
 
 float evaluarDerivada(float x) {
-  return 4 * powf((powf(x, 7) / 7 + sqrtf(3) * powf(x, 6)), 3) 
+  return 4 * powf((powf(x, 7) / 7 + sqrtf(3) * powf(x, 6)), 3)
     * (powf(x, 6) + 3 * sqrtf(3) * pow(x, 2));
 }
 
