@@ -5,7 +5,7 @@ void leerHorasTrabajadas(float*);
 void leerCategoriaTrabajador(char*);
 void casoCalcSueldo(float*, float*, char*);
 float getSueldo(float*, float);
-void mostrarSueldo(float*);
+void mostrarSueldo(const float*);
 
 
 void main() {
@@ -65,6 +65,6 @@ float getSueldo(float* horasTrabajadas, float pagoPorHora) {
 	return *horasTrabajadas * pagoPorHora;
 }
 
-void mostrarSueldo(float* sueldo) {
+void mostrarSueldo(const float* sueldo) {
 	printf("El sueldo es: %.2f \n", *sueldo);
 }
