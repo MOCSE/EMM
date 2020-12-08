@@ -6,3 +6,9 @@
 
 #Ignore zip files
 *.zip
+
+#ignore pdf files
+*.pdf
+
+#ignore build files
+[Bb]uild/

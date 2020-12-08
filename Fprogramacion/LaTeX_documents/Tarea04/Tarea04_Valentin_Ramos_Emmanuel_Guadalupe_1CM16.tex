@@ -1,0 +1,147 @@
+\documentclass[letterpaper, 12pt]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+
+\pagestyle{headings}
+
+\input{../texUtils/portada.tex}
+
+\begin{document}
+  %Titulo de portada:
+  \portada[Tarea 04]
+  %Cuerpo del documento:
+  {\centering\section*{\LARGE Método de ordenación rápida (quicksort)}\vspace{1cm}}
+  % \subsection*{¿Qué es?}
+  Quicksort, como su nombre lo menciona, es un metodo que se utiliza para ordenar vectores arrays.
+  Este algoritmo se basa en el hecho de que es más fácil y rápido ordenar dos listas pequeñas que 
+  una lista grande, en general este metodo es mucho más rapido a comparación de otros métodos, como el
+  de la burbuja, inserción o de selección.
+
+  Este método se basa en la típica estrategia característica de paragdimas como el modular pues aplica
+  el famoso dicho de "divide y vencerás". Los elementos a clasificar almacenados en un array o vector, se divide
+  en dos sublistas: una con todos los valores menores o iguales a un cierto valor específico y otra
+  con todos los valores mayores qye ese valor. El valor elegido puede ser cualquier valor arbitrario dentro
+  del vector. A este valor se le conoce como \textit{pivote}.
+
+  El primer caso es dividir el arreglo original en dos vectores y un valor de separación, de esta manera el vector
+  \textit{V} se divide en tres partes:
+  \begin{itemize}
+    \item Subvector \textit{VI} que contiene los valores inferiores o iguales.
+    \item El elemento de separación.
+    \item Subvector \textit{VD} que contiene los valores superiores o iguales.
+  \end{itemize}
+  
+  Los subvectores \textit{VI} y \textit{VD} no están ordenados a excepción del unico caso de reducirse a uno.
+  Se considera la siguiente lista de valores:
+
+  \begin{verbatim}
+    10  11  27  13  9  4  16
+  \end{verbatim}
+
+  Se elige un pivote, \textit{13}. Se recorre la lista desde el extremo izquierdo y se busca un elemento mayor
+  que \textit{13} (Se encuenta el \textit{18}). A continuación se busca el extremo derecho con un valor menor que 13
+  (Se encuentra el 4).
+
+  \begin{verbatim}
+    19  11  27  13  9  4  16
+  \end{verbatim}
+
+  Se intercambian estos dos valores y se produce la lista:
+
+  \begin{verbatim}
+    4  11  27  13  9  18  16
+  \end{verbatim}
+
+  Se sigue recorriendo el vector por la izquierda y se localiza el \textit{27}, y a continuación otro valor bajo se 
+  encuentra a la derecha (El \textit{9}). INtercambiar estos dos valores y se obtiene:
+
+  \begin{verbatim}
+    4  11  9  13  27  18  16
+  \end{verbatim}
+
+  Al intentar este proceso una vez más, se encuentra que las exploraciones de los dos extremos vienen juntos sin
+  encontrar ningún futuro valor que esté ``fuera de lugar”. En este punto se conoce que todos los valores a la derecha
+  son mayores que todos los valores a la izquierda del pivote. Se ha realizado una partición en la lista original, que se
+  ha quedado dividida en dos listas más pequeñas:
+
+  \begin{verbatim}
+    4  11  9  [13]  27  18  16
+  \end{verbatim}
+
+  Ninguna de ambas listas está ordenada; sin embargo, basados en los resultados de esta primera partición, se pueden ordenar
+  ahora las dos particiones independientemente. Esto es, si ordenamos la lista:
+
+  \begin{verbatim}
+    4  11  9
+  \end{verbatim}
+
+  En su posición, y la lista:
+
+  \begin{verbatim}
+    27  18  16
+  \end{verbatim}
+
+  Se igual forma, la lista completa está ordenada:
+
+  \begin{verbatim}
+    4, 9, 11, 13, 16, 18, 27
+  \end{verbatim}
+
+  El procedimiento de ordenación supone, siempre en primer lugar, una partición de la lista.
+
+  \newpage
+  Código de algoritmo Quicksort realizado en C:
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{src/img/qksort.png}
+  \end{center}
+
+  {\centering\section*{\LARGE Método de ordenación por mezcla (mergesort)}\vspace{1cm}}
+  % \subsection{}
+  Merge sort es un algoritmo basado en la técnica de diseño de algoritmos denominada "Divide y Vencerás"
+  Este método básicamente consiste en dividir el problemas a resolver en subproblemas del mismo tipo que a su vez
+  se divirán, mientras no sean sifucientemente pequeños o triviales.
+
+  Considerando el array de que va de p hasta r, los pasos que sigue este método para ordenar son los siguientes:
+
+  \begin{itemize}
+    \item \textbf{Divide} al encontrar el numero \textit{q} de la posición a medio camino entre p y r. Haz este paso de la misma
+    manera en que encontramos el punto medio en la búqueda binaria: suma p y r, divide entre 2 y redondea hacia abajo.
+    \item \textbf{Vence} al ordenar de manera recursiva los subarreglos en cada udo de los dos subproblemas creados por el paso 
+    de dividir. Es decir, ordena de manera recursiva el subarreglo \textit{array[p..q]} y ordena de manera recursiva el subarreglo \textit{array[q+1..r]}
+    \item \textbf{Combina} al mezclar los dos subarreglos ordenados de regreso en un solo subarreglo ordenado \textit{array[p..r]}
+  \end{itemize}
+
+  Necesitamos un caso base. el caso base es el subarreglo que contiene menos de dos elementos, es decir, cuando $p \geq q$, ya que un subarreglo sin 
+  elementos o con solo un elemento, ya está ordenado. Así que vamos a dividir-vencer-combinar solo cuando $p < r$
+
+  Veamos con un ejemplo. Vamos a empezar con un array que contiene a [14, 7, 3, 12, 9, 11, 6, 2], de modo que el primer subarreglo es en 
+  realidad el arreglo completo [0..7] (p = 0 y r = 7). Este subarreglo tiene por lo menos dos elementos, así que no es un caso base.
+
+  \begin{itemize}
+    \item En el paso de \textbf{dividir}, calculador q = 3.
+    \item EL paso de \textbf{vencer} nos hace ordenar los dos subarreglos a[0..3]. que contiene a [14, 7, 2, 12], y
+    b[4..7], que contiene a [9, 11, 6, 2]. Cuando regresamos del paso de vencer, cada uno de los dos subarreglos está
+    ordenado: a[0..3] contiene a [3, 7, 12, 14] y b[4..7] contiene a [2, 6, 9, 11], de modo que el arreglo completo es
+    [3, 7, 12, 2, 6, 9, 11].
+    \item Por último, el paso de \textbf{combinar} mezcla los dos subarreglos en la primera y la segunda mitad, para producir
+    el arrelo final ordenado [2, 3, 6, 7, 9, 11, 12, 14].
+  \end{itemize}
+  \newpage
+  Código del algoritmo en C:
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{src/img/mgsort_1.png}
+  \end{center}
+  \begin{center}
+    \includegraphics[width=.9\textwidth]{src/img/mgsort_2.png}
+  \end{center}
+
+  \begin{thebibliography}{0}
+    \bibitem{Muis2008} Luis J. A. (2008). FUNDAMENTOS DE PROGRAMACIÓN. Algoritmos, estructura de datos
+    y objetos. McGRAW-HILL.
+    \bibitem{Kyle} Kyle L. (1999) Mastering Algorithms with C. O'Reilly 1 Ed.
+  \end{thebibliography}
+\end{document}
