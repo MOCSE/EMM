@@ -31,7 +31,7 @@ void darNumeroElem(int* tam) {
 
     if (*tam < MAXTAM) { status = 1; }
     else {
-      printf("El numero debe ser menor a 50. Intente de nuevo.\n");
+      printf("El numero debe ser menor a %d. Intente de nuevo.\n", MAXTAM);
       status = 0;
     }
   }
